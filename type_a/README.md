@@ -16,8 +16,10 @@ $ docker-compose up --build;
 
 **注)** Port: 8080 - 8082 が空いていることが起動する必須要件
 
-## 停止とコンテナの削除
+## 停止
 
 ```bash
 $ docker-compose down;
 ```
+
+（[コンテナ・ネットワーク・ボリューム・イメージが削除される](http://docs.docker.jp/compose/reference/down.html)）
