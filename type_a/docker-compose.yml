@@ -26,7 +26,7 @@ services:
     depends_on:
       - mysql_server
     environment:
-      DATABASE_HOST: mysql_server
+      DATABASE_HOST: mysql_server_type_a
       DATABASE_PORT: 3306
       DATABASE_NAME: docker_kubernetes_example_type_a
       DATABASE_USER: type_a
@@ -34,7 +34,7 @@ services:
     restart: always
 
   mysql_server:
-    container_name: mysql_server
+    container_name: mysql_server_type_a
     build:
       context: ./mysql_server
       dockerfile: Dockerfile
