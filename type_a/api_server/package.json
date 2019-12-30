@@ -1,10 +1,10 @@
 {
-    "name": "type_a-web_front",
+    "name": "type_a-api_server",
     "version": "1.0.0",
     "description": "",
-    "main": "webfront.js",
+    "main": "apiserver.js",
     "scripts": {
-        "start": "node webfront.js"
+        "start": "node apiserver.js"
     },
     "keywords": [],
     "author": "",
@@ -12,7 +12,6 @@
     "dependencies": {
         "express": "^4.17.1",
         "morgan": "^1.9.1",
-        "node-fetch": "^2.6.0",
         "serve-index": "^1.9.1"
     }
 }
