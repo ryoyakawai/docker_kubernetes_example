@@ -12,10 +12,12 @@
     api_server: {
       hostname: process.env.API_SERVER_HOSTNAME || '127.0.0.1',
       protocol: process.env.API_SERVER_PROTOCOL || 'http',
-      port: process.env.API_SERVER_PORT || 8081
+      port: process.env.API_SERVER_PORT || 8081,
+      full: process.env.API_SERVER || 'http://127.0.0.1:8081'
     }
   }
-  const API_SERVER = `${config.api_server.protocol}://${config.api_server.hostname}:${config.api_server.port}`
+  const API_SERVER = config.api_server.full
+  //const API_SERVER = `${config.api_server.protocol}://${config.api_server.hostname}:${config.api_server.port}`
 
   // Constants
   const PORT = 8080
