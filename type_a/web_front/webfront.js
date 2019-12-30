@@ -56,6 +56,13 @@
       })
   })
 
+  router.get('/getjson/echo/:message', async (req, res) => {
+    fetch(`${API_SERVER}/api/v1/echo/${req.params.message}`)
+      .then( response => response.json() )
+      .then( json => {
+        res.send(json)
+      })
+  })
 
   app.listen(PORT, HOST)
   console.log(`Running on http://${HOST}:${PORT}`)

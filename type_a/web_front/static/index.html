@@ -4,11 +4,25 @@
     <title>Sample: Type A</title>
   </head>
   <body>
-    <span>[sample: Type A] Hello World!!</span>
+    <div>
+      <span>[sample: Type A] Hello World!!</span>
+    </div>
+    <div>
+      <div><button id="getJson">GET JSON</button></div>
+      <div id="message"></div>
+    </div>
     <script>
-     function async fetchJson() {
-       
-     }
+     document.querySelector('#getJson').addEventListener('mousedown', (event) => {
+       fetch('/api/v1/getjson/helloworld')
+         .then( response => response.json() )
+         .then( json => {
+           let content = []
+           json.msg.db.data.forEach( item => {
+             content.push( `[${item.id}]-[${item.message}]-[${item.created_date}]-[${item.updated_date}]`)
+           })
+           document.querySelector('#message').innerHTML = content.join('<br>')
+       })
+     })
     </script>
   </body>
 </html>
