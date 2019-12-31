@@ -6,13 +6,10 @@
   const router = express.Router()
   const morgan = require('morgan')
 
-  // Constants
-  const PORT = 8081
-  const HOST = '0.0.0.0'
-
-  // db
-  const mysql = require('mysql')
+  // Set config by environment variable
   const config = {
+    self_port: process.env.SELF_PORT || 8081,
+    self_ip: process.env.SELF_IP || '0.0.0.0',
     db_server: {
       host: process.env.DATABASE_HOST || 'localhost',
       port: process.env.DATABASE_PORT || 3306,
@@ -21,7 +18,17 @@
       password: process.env.DATABASE_PASSWD || 'abcde12345',
     }
   }
-  const connection = mysql.createConnection(config.db_server)
+
+  // Constants
+  //const PORT = 8081
+  //const HOST = '0.0.0.0'
+  const PORT = config.self_port
+  const HOST = config.self_ip
+
+  // db
+  const mysql = require('mysql')
+  //const connection = mysql.createConnection(config.db_server)
+  const connection = mysql.createPool(config.db_server)
 
   // App
   const app = express()
@@ -38,7 +45,15 @@
   const base_api_path = '/api/v1'
   app.use(base_api_path, router)
   router.get('/helloworld', async (req, res) => {
-    let out = await getDataFromDB()
+    let out = {
+      success: false,
+      data: []
+    }
+    try {
+      out = await getDataFromDB()
+    } catch(err) {
+      console.log('[ERR] message=[%o]', err)
+    }
     let ret = {
       status: true,
       msg: {

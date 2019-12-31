@@ -8,7 +8,10 @@
   const morgan = require('morgan')
   const fetch = require('node-fetch')
 
+  // Set config by environment variable
   const config = {
+    self_port: process.env.SELF_PORT || 8080,
+    self_ip: process.env.SELF_IP || '0.0.0.0',
     api_server: {
       hostname: process.env.API_SERVER_HOSTNAME || '127.0.0.1',
       protocol: process.env.API_SERVER_PROTOCOL || 'http',
@@ -20,8 +23,10 @@
   //const API_SERVER = `${config.api_server.protocol}://${config.api_server.hostname}:${config.api_server.port}`
 
   // Constants
-  const PORT = 8080
-  const HOST = '0.0.0.0'
+  //const PORT = 8080
+  //const HOST = '0.0.0.0'
+  const PORT = config.self_port
+  const HOST = config.self_ip
 
   // App
   const app = express()

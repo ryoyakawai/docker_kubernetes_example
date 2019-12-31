@@ -8,5 +8,8 @@ RUN npm install
 
 COPY . .
 
-EXPOSE 8080
+ARG SELF_PORT
+ENV SELF_PORT $SELF_PORT
+EXPOSE $SELF_PORT
+
 CMD [ "node", "webfront.js" ]

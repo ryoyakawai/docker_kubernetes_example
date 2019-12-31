@@ -17,10 +17,14 @@
          .then( response => response.json() )
          .then( json => {
            let content = []
-           json.msg.db.data.forEach( item => {
-             content.push( `[${item.id}]-[${item.message}]-[${item.created_date}]-[${item.updated_date}]`)
-           })
-           document.querySelector('#message').innerHTML = content.join('<br>')
+           if(json.msg.db != undefined && json.msg.db.success === true) {
+             json.msg.db.data.forEach( item => {
+               content.push( `[${item.id}]-[${item.message}]-[${item.created_date}]-[${item.updated_date}]`)
+             })
+             document.querySelector('#message').innerHTML = content.join('<br>')
+           } else {
+             document.querySelector('#message').innerHTML = '[ERROR] Could not get data.'
+           }
        })
      })
     </script>

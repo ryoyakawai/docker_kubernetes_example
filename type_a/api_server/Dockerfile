@@ -8,5 +8,8 @@ RUN npm install
 
 COPY . .
 
-EXPOSE 8081
+ARG SELF_PORT
+ENV SELF_PORT $SELF_PORT
+EXPOSE $SELF_PORT
+
 CMD [ "node", "apiserver.js" ]
